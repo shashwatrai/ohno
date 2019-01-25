@@ -71,7 +71,7 @@ def codechef_login(user,passw):
 	language_choice=get_lang_for_submission(sys.argv[1])
 	option_value=""
 	if language_choice == "cpp":
-		option_value = "C++14(gcc 6.3)" 
+		option_value = "44" 
 	elif language_choice == "java":
 		option_value = "10"
 	elif language_choice == "python3":
@@ -88,8 +88,7 @@ def codechef_login(user,passw):
 	text_area.send_keys(code_script)
 	time.sleep(8)
 	select=Select(driver.find_element_by_id("edit-language"))
-	select.select_by_visible_text("C++14(gcc 6.3)")
-	select.select_by_value("44")
+	select.select_by_value(option_value)
 	# langauge_button=driver.find_element_by_xpath("//select[@name='language']")
 	# driver.execute_script("arguments[0].click();",langauge_button)
 	print("44")
@@ -97,8 +96,17 @@ def codechef_login(user,passw):
 	# language_choose=driver.find_element_by_xpath("//select[@name='language']/option[@value='"+option_value+"']")
 	# driver.execute_script("arguments[0].click();",language_choose)
 	print ("46")
-	# code_submit=driver.find_element_by_id("edit-submit-1")
-	# driver.execute_script("arguments[0].click();",code_submit)
+	code_submit=driver.find_element_by_id("edit-submit-1")
+	driver.execute_script("arguments[0].click();",code_submit)
+	while True:
+		result=driver.find_element_by_id("display_result")
+		result_has_come=result.find_element_by_tag_name("strong")
+		if result_has_come.size()==0:
+			time.sleep(4)
+		else:
+			print (result_has_come)																																																																																																																																																																									
+			break
+
 
 GREEN = '\033[92m'
 GRAY = '\033[90m'
