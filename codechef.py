@@ -6,6 +6,13 @@ from bs4 import BeautifulSoup
 import sys
 from selenium.webdriver.support.ui import Select
 import time
+from selenium.common.exceptions import NoSuchElementException        
+def check_exists_by_tag_name(scope_to_search,tag):
+    try:
+        scope_to_search.find_element_by_tag_name(tag)
+    except NoSuchElementException:
+        return False
+    return True
 driver=webdriver.Firefox()
 
 def get_lang_for_submission(File_Path):
@@ -86,25 +93,24 @@ def codechef_login(user,passw):
 	code_script=code_script.read()
 	text_area=driver.find_element_by_id("edit-program")
 	text_area.send_keys(code_script)
-	time.sleep(8)
+	time.sleep(10)
 	select=Select(driver.find_element_by_id("edit-language"))
 	select.select_by_value(option_value)
 	# langauge_button=driver.find_element_by_xpath("//select[@name='language']")
 	# driver.execute_script("arguments[0].click();",langauge_button)
-	print("44")
 	# language_choose=driver.find_element_by_xpath("//select[@name='language']/option[text()='C++14(gcc 6.3)']")
 	# language_choose=driver.find_element_by_xpath("//select[@name='language']/option[@value='"+option_value+"']")
 	# driver.execute_script("arguments[0].click();",language_choose)
-	print ("46")
 	code_submit=driver.find_element_by_id("edit-submit-1")
 	driver.execute_script("arguments[0].click();",code_submit)
+	time.sleep(4)
 	while True:
 		result=driver.find_element_by_id("display_result")
-		result_has_come=result.find_element_by_tag_name("strong")
-		if result_has_come.size()==0:
+		if check_exists_by_tag_name(result,"strong")==False:
 			time.sleep(4)
 		else:
-			print (result_has_come)																																																																																																																																																																									
+			result_has_come=result.find_element_by_tag_name("strong")
+			print (result_has_come.text)																																																																																																																																																																									
 			break
 
 
