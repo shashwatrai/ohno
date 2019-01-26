@@ -5,9 +5,10 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 import urllib
+from ohno.gui import *
 import tkinter as tk
-import tkinter as ttk
-from ans import *
+from tkinter import ttk
+import json
 
 
 GREEN = '\033[92m'
@@ -55,6 +56,8 @@ def print_help():
 	print("\t%sohno%s --gfg %s[%scode_name]%s\n"%(BOLD, END, YELLOW,UNDERLINE,END) )
 	print("\t%sohno%s -s %s[%scode_file]%s %s[%sinput_file]%s\n"%(BOLD, END, YELLOW,UNDERLINE, END, YELLOW, UNDERLINE,END) )
 	print("\t%sohno%s --submit %s[%scode_file]%s %s[%sinput_file]%s\n"%(BOLD, END, YELLOW,UNDERLINE, END, YELLOW, UNDERLINE,END) )
+	# print("\t%sohno%s -c %s%s\n"%(BOLD, END, YELLOW,UNDERLINE,END) )
+	# print("\t%sohno%s --calender %s%s\n"%(BOLD, END, YELLOW,UNDERLINE,END) )
 	print("%sDESCRIPTION%s\n\t\n"%(BOLD,END))
 
 
@@ -163,18 +166,110 @@ def scrap(errors_list):
 			i=i+1
 	util(stack_questions_list)
 
-language = get_lang(sys.argv[1])
-command = language + sys.argv[1]
 
-out, err = execute(command)
-if out:
-	print(out,end='')
-if err:
-	print(err,end='')
-else:
-	print(CYAN + BOLD + "\nNo errors detected" + END)
-	quit()
-all_error = []
-if confirm():
-	all_error.append(get_error(err, language))
-	scrap(all_error[0])
+def get_lang_for_exec(File_Path):
+	if File_Path.endswith(".py"):
+		return "python3"
+	elif File_Path.endswith(".cpp"):
+		return "cpp"
+	elif File_Path.endswith(".java"):	
+		return "java"
+	elif File_Path.endswith(".c"):
+		return "c"
+	elif File_Path.endswith(".php"):
+		return "php"
+	elif File_Path.endswith(".pl"):
+		return "perl"
+	elif File_Path.endswith(".rb"):
+		return "ruby"
+	elif File_Path.endswith(".go"):
+		return "go"
+	elif File_Path.endswith(".sh"):
+		return "bash"
+	elif File_Path.endswith(".sql"):
+		return "sql"
+	elif File_Path.endswith(".pas"):
+		return "pascal"
+	elif File_Path.endswith(".cs"):
+		return "csharp"
+	elif File_Path.endswith(".r"):
+		return "r"
+	elif File_Path.endswith(".js"):
+		return "rhino"
+	elif File_Path.endswith(".m"):
+		return "octave"
+	elif File_Path.endswith(".coffee"):
+		return "coffeescript"
+	elif File_Path.endswith(".b"):
+		return "brainfuck"
+	elif File_Path.endswith(".swift"):
+		return "swift"
+	elif File_Path.endswith(".lua"):
+		return "lua"
+	elif File_Path.endswith(".kt"):
+		return "kotlin"
+	else: 
+		return None
+
+def submit():
+	clientId = "ac41af890db3dff65bb5278e2b7880f"
+	clientSecret = "5b9748536e29f2c9e360e82fa2b59865f4d6540eea17ffe5401c58bf3923de5c"
+	script = open(sys.argv[2], 'r').read()
+	stdin = ""
+	if len(sys.argv) > 3:  # change when -s is introduced
+		stdin = open(sys.argv[3], 'r').read()	
+	language = get_lang_for_exec(sys.argv[2])
+	versionIndex = "2"
+	if language == "brainfuck" or language == "rhino":
+		versionIndex = "0"
+	if language == "kotlin" or language == "lua":
+		versionIndex = "1"
+	# print(stdin)
+
+	''' To check credits spent '''
+	# credit = {"clientId": clientId,"clientSecret": clientSecret}
+	# check_credits = requests.post(url = "https://api.jdoodle.com/v1/credit-spent", json=credit)
+	# print(check_credits.text)
+
+
+	data = {"clientId": clientId,"clientSecret": clientSecret,"script":script,"stdin":stdin,"language":language,"versionIndex":versionIndex}
+	req = requests.post(url = "https://api.jdoodle.com/v1/execute", json=data)
+	# print(req.text)
+	answer = json.loads(req.text)
+	error = False
+	if answer["memory"] == None and answer["cpuTime"] == None:
+		error = True
+	if error == False:
+		print(answer["output"])
+		print("\nMemory used: "+ GREEN + BOLD + answer["memory"] + END)
+		print("\nCPU Time: "+ GREEN + BOLD + answer["cpuTime"] + END)
+	else:
+		if answer["output"] == "\n\n\n JDoodle - Timeout \nIf your program reads input, please enter the inputs in STDIN box above or try enable \"Interactive\" mode option above.\nPlease check your program has any endless loop. \nContact JDoodle support at jdoodle@nutpan.com for more information.":
+			print(RED + BOLD + "Please input the STDIN file as an argument!" + END)
+		else:	
+			if language == "python3":
+				language = "python3 "
+			elif language == "java":
+				language = "javac "
+			elif language == "cpp":
+				language = "g++ "
+			elif language == "c":
+				language = "gcc "
+			elif language == "rhino":
+				language = "rhino "
+			else:
+				language = None
+
+
+			if language == None:
+				print(CYAN + BOLD + "Currently search on stackoverflow is available only for C, C++, Java, Python and JavaScript!!!")
+			else:
+				print(answer["output"])
+				err = answer["output"]
+				all_error = []
+				if confirm():
+					all_error.append(get_error(err, language))
+					scrap(all_error[0])
+
+			
+			

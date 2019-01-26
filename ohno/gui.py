@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from hack_project.ans import *
+from ohno.ans import *
 
 #from pynput.mouse import Button,Controller
 def tabify(s):

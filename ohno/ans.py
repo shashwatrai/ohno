@@ -5,7 +5,7 @@ import re
 import sys
 from bs4 import BeautifulSoup
 import urllib
-from hack_project.gui import *
+from ohno.gui import *
 import tkinter as tk
 from tkinter import ttk
 
