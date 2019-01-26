@@ -5,9 +5,7 @@ EasyProcess==0.2.5
 idna==2.8
 lxml==4.3.0
 python-dateutil==2.7.5
-python-xlib==0.23
 PyVirtualDisplay==0.2.1
-pyxhook==1.0.0
 requests==2.21.0
 selenium==3.141.0
 six==1.12.0

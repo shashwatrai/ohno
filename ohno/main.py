@@ -60,6 +60,14 @@ def print_help():
 	# print("\t%sohno%s --calender %s%s\n"%(BOLD, END, YELLOW,UNDERLINE,END) )
 	print("%sDESCRIPTION%s\n\t\n"%(BOLD,END))
 
+def cprint_help():
+	print("%sNAME%s\n\tcprog\n"%(BOLD,END))
+	print("\t%sohno%s -c %s[%scode_name]%s\n"%(BOLD, END, YELLOW,UNDERLINE,END) )
+	print("\t%sohno%s --codechef %s[%scode_name]%s\n"%(BOLD, END, YELLOW,UNDERLINE,END) )
+	print("\t%sohno%s -s %s[%scode_name]%s\n"%(BOLD, END, YELLOW,UNDERLINE,END) )
+	print("\t%sohno%s --spoj %s[%scode_name]%s\n"%(BOLD, END, YELLOW,UNDERLINE,END) )
+	print("%sDESCRIPTION%s\n\t\n"%(BOLD,END))
+
 
 def error_on_python(error):
 	list_err = []

@@ -3,7 +3,8 @@ from ohno.opti import *
 from ohno.main import *
 from ohno.ans import *
 from ohno.calender import *
-
+from ohno.codechef import *
+from ohno.spoj import *
 
 def entry():
 	if len(sys.argv) == 1:
@@ -60,6 +61,22 @@ def entry():
 	if confirm():
 		all_error.append(get_error(err, language))
 		scrap(all_error[0])
+
+def centry():
+	if len(sys.argv) == 1:
+		cprint_help()
+		quit()
+	if sys.argv[1] == '-h' or sys.argv[1] == '--help':
+		cprint_help()
+		quit()
+
+	if sys.argv[1] == '-s' or sys.argv[1] == '--spoj':
+		spoj()
+		quit()
+
+	if sys.argv[1] == '-c' or sys.argv[1] == '--codechef':
+		codechef()
+		quit()
 
 #uncomment the following when used as a standalone script
 #entry()

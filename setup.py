@@ -21,5 +21,5 @@ setup(name='ohno',
             'soupsieve==1.6.2',
             'urllib3==1.24.1'
       ],
-      entry_points={"console_scripts": ["ohno = ohno:entry"]},
+      entry_points={"console_scripts": ["ohno = ohno:entry", "cprog = ohno:centry"]},
       zip_safe=False)
