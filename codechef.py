@@ -93,7 +93,7 @@ def codechef_login(user,passw):
 	code_script=code_script.read()
 	text_area=driver.find_element_by_id("edit-program")
 	text_area.send_keys(code_script)
-	time.sleep(10)
+	time.sleep(15)
 	select=Select(driver.find_element_by_id("edit-language"))
 	select.select_by_value(option_value)
 	# langauge_button=driver.find_element_by_xpath("//select[@name='language']")
@@ -103,7 +103,7 @@ def codechef_login(user,passw):
 	# driver.execute_script("arguments[0].click();",language_choose)
 	code_submit=driver.find_element_by_id("edit-submit-1")
 	driver.execute_script("arguments[0].click();",code_submit)
-	time.sleep(4)
+	time.sleep(8)
 	while True:
 		result=driver.find_element_by_id("display_result")
 		if check_exists_by_tag_name(result,"strong")==False:
