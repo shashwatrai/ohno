@@ -5,6 +5,7 @@ from ohno.ans import *
 from ohno.calender import *
 from ohno.codechef import *
 from ohno.spoj import *
+from ohno.todo import *
 
 def entry():
 	if len(sys.argv) == 1:
@@ -78,5 +79,5 @@ def centry():
 		codechef()
 		quit()
 
-#uncomment the following when used as a standalone script
-#entry()
+def tentry():
+	util_todo()

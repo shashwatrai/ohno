@@ -19,7 +19,9 @@ setup(name='ohno',
             'selenium==3.141.0',
             'six==1.12.0',
             'soupsieve==1.6.2',
-            'urllib3==1.24.1'
+            'urllib3==1.24.1',
+            'pyxhook==1.0.0',
+            'python-xlib==0.23'
       ],
-      entry_points={"console_scripts": ["ohno = ohno:entry", "cprog = ohno:centry"]},
+      entry_points={"console_scripts": ["ohno = ohno:entry", "cprog = ohno:centry", "todo = ohno:tentry"]},
       zip_safe=False)

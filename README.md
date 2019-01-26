@@ -52,3 +52,5 @@ Installing geckodriver
 
 * ``` cprog -s [file_name] ``` or ``` cprog --spoj [file_name] ``` to submit code on **spoj**.
 * ``` cprog -c [file_name] ``` or ``` cprog --codechef [file_name] ``` to submit code on **codechef**.
+
+* ``` todo ``` to manage a todo list.
