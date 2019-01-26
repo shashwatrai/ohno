@@ -36,7 +36,7 @@ Installing geckodriver
 ```
 wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
 ```
-Extract the tar.gz file and move it to ```usr/local/bin``` folder
+Extract the tar.gz file and move it to ```/usr/local/bin``` folder
 
 
 ## How to use
