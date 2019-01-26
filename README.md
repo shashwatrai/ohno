@@ -23,18 +23,21 @@ While coding in a contest or just practicing, a user can directly submit codes o
 ## Installation
 On Ubuntu/Debian, you can install *ohno* by cloning the repository and installing via pip:
 ```
-git clone https://github.com/shashwatrai/ohno.git
+# git clone https://github.com/shashwatrai/ohno.git
 ```
 ```
-./install_dependencies.sh
+# ./install_dependencies.sh
 ```
 Now, inside the cloned folder,
 ```
-pip install .
+# pip install .
 ```
 Installing geckodriver
 ```
-wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+# wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+# tar -xvzf geckodriver-v0.23.0-linux64.tar.gz
+# cd geckodriver-v0.23.0-linux64
+# mv geckodriver /usr/local/bin
 ```
 Extract the tar.gz file and move it to ```/usr/local/bin``` folder
 
