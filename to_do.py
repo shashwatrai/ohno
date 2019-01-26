@@ -16,6 +16,3 @@ def get_to_do_list_from_file():
 	file3=open('to_do_list.txt','r')
 	list_fetch=file3.readlines()
 	return list_fetch
-
-
-get_to_do_list_from_file()
