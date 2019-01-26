@@ -5,6 +5,9 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 import urllib
+import tkinter as tk
+import tkinter as ttk
+from ans import *
 
 
 GREEN = '\033[92m'
@@ -158,7 +161,7 @@ def scrap(errors_list):
 			each_strong.find('strong')
 			stack_questions_list[i].append((each_strong.text).strip())
 			i=i+1
-	print(stack_questions_list)
+	util(stack_questions_list)
 
 language = get_lang(sys.argv[1])
 command = language + sys.argv[1]
