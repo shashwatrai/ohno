@@ -2,12 +2,23 @@ import requests
 import re
 from bs4 import BeautifulSoup
 from ohno.gui2 import *
-
+GREEN = '\033[92m'
+GRAY = '\033[90m'
+CYAN = '\033[36m'
+RED = '\033[31m'
+YELLOW = '\033[33m'
+END = '\033[0m'
+UNDERLINE = '\033[4m'
+BOLD = '\033[1m'
 def answer_scrap_gfg(url):
 	page=requests.get(url)
 	html_doc=page.text
 	soup=BeautifulSoup(html_doc,"lxml")
 	new_soup=soup.find("a",href=re.compile("geeksforgeeks.org"))
+	if new_soup==None:
+		print(YELLOW + BOLD + "No result found" + END, end=' ')
+		print()
+		return
 	new_soup=new_soup['href']
 	new_soup=new_soup[new_soup.find("q=")+2:]
 	new_soup=new_soup[:new_soup.find("&")]
