@@ -39,7 +39,6 @@ Installing geckodriver
 # cd geckodriver-v0.23.0-linux64
 # mv geckodriver /usr/local/bin
 ```
-Extract the tar.gz file and move it to ```/usr/local/bin``` folder
 
 
 ## How to use
