@@ -45,6 +45,7 @@ Extract the tar.gz file and move it to ```/usr/local/bin``` folder
 * ``` ohno -q "custom_query" ``` or ``` ohno --query "custom_query" ``` to search a custom query on stackoverflow.
 * ``` ohno  -g "name_of_algo_or_code" ``` or ``` ohno  --gfg "name_of_algo_or_code" ``` to refer to a specific algo.
 * ``` ohno -s [file_name] [input_file] ``` or ``` ohno --submit [file_name] [input_file] ``` to compile code online.
+* ``` ohno -c ``` or ``` ohno --calender ``` to display upcoming programming contests details.
 * ``` ohno -h ``` or ``` ohno --help ``` to display help.
 
 * ``` cprog -s [file_name] ``` or ``` cprog --spoj [file_name] ``` to submit code on **spoj**.
