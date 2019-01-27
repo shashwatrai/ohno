@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import os
+import ohno.stat
 
 file_todo='.file1.txt'
 SD_count='.file2.txt'
@@ -54,7 +55,9 @@ def Start(c,p):
 		fptr2=open(SD_count,"w")
 		fptr2.write(str(c)+ " " +str(0)+ " "+str(1))
 		fptr2.close()
-		os.system('python3 stat.py')
+		pth = ohno.stat.__file__
+		os.system('python3 '+pth)
+		#ohno.stat.entry()
 	else:
 		pass
 	r1.destroy()
@@ -76,7 +79,9 @@ def End(c,p):
 		if int(lc[0])==c:
 			delete_to_do(p)
 			#print('Going to kill')
-			os.system('python3 stat.py')
+			pth = ohno.stat.__file__
+			os.system('python3 '+pth)
+			#ohno.stat.entry()
 		else:
 			#print(c,'Unable to kill')
 			pass
@@ -107,10 +112,13 @@ def View_entry():
 	#r.geometry("200x200")
 	#r.configure(background='white',borderwidth=10)
 	r1.columnconfigure(0, weight=1)
-	for i in range(0,len(lst)):																			
-		lbl=tk.Label(r1,text=lst[i],foreground='red',background='yellow',font=('Verdana', '10' , 'bold italic'),borderwidth=5).grid(row=2*i,column=0,sticky='ew',columnspan=2)		
-		b1=tk.Button(r1,text='Start',background='cyan',font=('Verdana', '10', 'bold italic'),command=lambda c=i:Start(c,lst[c])).grid(row=2*i+1,column=0,padx=5,pady=5)
-		b2=tk.Button(r1,text='Done',background='cyan',font=('Verdana', '10', 'bold italic'),command=lambda c=i:End(c,lst[c])).grid(row=2*i+1,column=1,padx=5,pady=5)	
+	if lst == None:
+		pass
+	else:
+		for i in range(0,len(lst)):																			
+			lbl=tk.Label(r1,text=lst[i],foreground='red',background='yellow',font=('Verdana', '10' , 'bold italic'),borderwidth=5).grid(row=2*i,column=0,sticky='ew',columnspan=2)		
+			b1=tk.Button(r1,text='Start',background='cyan',font=('Verdana', '10', 'bold italic'),command=lambda c=i:Start(c,lst[c])).grid(row=2*i+1,column=0,padx=5,pady=5)
+			b2=tk.Button(r1,text='Done',background='cyan',font=('Verdana', '10', 'bold italic'),command=lambda c=i:End(c,lst[c])).grid(row=2*i+1,column=1,padx=5,pady=5)	
 
 
 	r1.bind("<Escape>",lambda event:r1.destroy())
@@ -177,7 +185,5 @@ def util_todo():
 	l.focus_set()
 	l.activate(0)
 	root.mainloop()
-
-# util_todo()
 
 
